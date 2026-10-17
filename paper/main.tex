@@ -1,0 +1,236 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\bp}{\boxplus}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Rea}{Re}
+
+\hypersetup{pdftitle={Opposite gaps defeat large-time unimodality for one-sided stable processes},pdfauthor={Yitzchak Shmalo}}
+
+\title[Opposite gaps and large-time unimodality]{Opposite gaps defeat large-time unimodality\\ for one-sided stable processes}
+\author{Yitzchak Shmalo}
+\address{Einstein Institute of Mathematics, The Hebrew University of Jerusalem, Jerusalem, Israel}
+\email{yitzchak.shmalo@gmail.com}
+\date{17 October 2026}
+\subjclass[2020]{60E05, 60G52, 46L54}
+\keywords{unimodality, stable process, initial distribution, free convolution, free stable law, subordination}
+
+\begin{document}
+\begin{abstract}
+Hasebe and Ueda conjectured that if $S_t$ (resp.\ $T_t$) is the law at time $t$ of a classical (resp.\ free) strictly $\alpha$-stable process and the initial law $\mu$ has a finite absolute moment of order $2+\alpha$, then $\mu*S_t$ (resp.\ $\mu\bp T_t$) is unimodal for all large $t$. We show that this fails for every $\alpha\in(0,1)$ in both settings, for the stable laws concentrated on the positive half-line. There is one probability measure $\mu_\ast$, with $\int e^{\lambda|x|}\,d\mu_\ast(x)<\infty$ for every $\lambda>0$, such that $\mu_\ast*S^{(\alpha)}_t$ and $\mu_\ast\bp T^{(\alpha)}_t$ are not unimodal for any $\alpha\in(0,1)$ and any $t>0$. Its atoms run to $-\infty$, against the direction of the kernel, with gaps tending to infinity. In the classical case the convolution density is strictly decreasing on intervals arbitrarily far to the left; in the free case the density of the free convolution vanishes on an interval lying between two points where it is positive, which we read off from the Huang--Wang description of the support of a free convolution with a freely infinitely divisible law.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+A probability measure $\nu$ on $\R$ is \emph{unimodal} if there are $a\in\R$, $c\ge0$ and a function $f\ge0$, nondecreasing on $(-\infty,a)$ and nonincreasing on $(a,\infty)$, with $\nu=c\,\delta_a+f(x)\,dx$. This is the definition used in \cite{HU}.
+
+Hasebe and Ueda \cite{HU} study when a process with independent increments started from an initial law $\mu$ becomes unimodal at large times. They show that this happens for free Brownian motion when $\mu$ has compact support and for Brownian motion when $\int e^{\beta x^2}\,d\mu(x)<\infty$ for some $\beta>0$ \cite[Theorems 1.2 and 1.3]{HU}, and they examine the Cauchy process and the positive $1/2$-stable process with initial distributions. For the positive $1/2$-stable law $L_t$ they prove that $\mu*L_t$ is unimodal for all large $t$ when $\mu$ has compact support \cite[Theorem 5.3]{HU}, and they construct $\mu$ with $\int|x|^p\,d\mu<\infty$ for all $p<5/2$ such that $\mu*L_t$ is never unimodal \cite[Proposition 5.4]{HU}; in that construction the $5/2$-moment is always infinite. They then write that they conjecture $\mu*L_t$ to be unimodal in large time when the $5/2$-moment is finite, and state the general form:
+
+\begin{quote}
+\textbf{Conjecture 5.5 of \cite{HU}.} Suppose that $S_t$ (resp.\ $T_t$) is the law at time $t\ge0$ of a classical (resp.\ free) strictly stable process of index $\alpha\in(0,2)$. If $\mu$ is a probability measure such that $\int_\R|x|^{2+\alpha}\,d\mu(x)<\infty$, then $\mu*S_t$ (resp.\ $\mu\bp T_t$) is unimodal for sufficiently large $t>0$.
+\end{quote}
+
+For the symmetric Cauchy law $C_t$ ($\alpha=1$), for which $\mu*C_t=\mu\bp C_t$, a finite third moment does give unimodality at large times \cite[Theorem 5.2]{HU}. The atoms of the measure in \cite[Proposition 5.4]{HU} go to $+\infty$, the direction in which the positive kernel spreads mass, and each new atom has to outweigh the decreasing tails of all the atoms before it; that is what forces its $5/2$-moment to be infinite. If the atoms go to $-\infty$ instead, no weight condition is needed at all.
+
+For $\alpha\in(0,1)$ let $S^{(\alpha)}_t$ be the law with Laplace transform
+\begin{equation}\label{eq:classical}
+\int_0^\infty e^{-\lambda x}\,S^{(\alpha)}_t(dx)=\exp(-t\lambda^\alpha),\qquad \lambda\ge0,
+\end{equation}
+the law at time $t$ of the strictly $\alpha$-stable subordinator, and let $T^{(\alpha)}_t$ be the law with Voiculescu transform
+\begin{equation}\label{eq:free}
+\varphi_{T^{(\alpha)}_t}(z)=-t\,e^{i\pi\alpha}z^{1-\alpha},\qquad z\in\C^+,
+\end{equation}
+with the principal branch of the power. This is the positive free strictly $\alpha$-stable law of Hasebe and Kuznetsov \cite{HK}, with positivity parameter $\rho=1$, at time $t$. Put
+\begin{equation}\label{eq:mustar}
+A_n=2^{2^n},\qquad w_n=2^{-n-2}e^{-A_n^2}\ (n\ge1),\qquad W=\sum_{n\ge1}w_n,\qquad
+\mu_\ast=(1-W)\,\delta_0+\sum_{n\ge1}w_n\,\delta_{-A_n}.
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+The measure $\mu_\ast$ satisfies $\int e^{\lambda|x|}\,d\mu_\ast(x)<\infty$ for every $\lambda>0$. For every $\alpha\in(0,1)$ and every $t>0$, neither $\mu_\ast*S^{(\alpha)}_t$ nor $\mu_\ast\bp T^{(\alpha)}_t$ is unimodal. In particular Conjecture 5.5 of \cite{HU} fails for every $\alpha\in(0,1)$, both for classical and for free strictly stable processes.
+\end{theorem}
+
+At $\alpha=1/2$, $S^{(1/2)}_t=L_{t/\sqrt2}$ in the notation of \cite{HU}, so the theorem also answers the question raised for $L_t$ just before Conjecture 5.5: a finite $5/2$-moment, and even finite exponential moments of every order, do not make $\mu*L_t$ unimodal at large times. Since a compactly supported $\mu$ does \cite[Theorem 5.3]{HU}, for this kernel the dividing line is the support of $\mu$ and not its tail.
+
+The classical half rests on one observation (Lemma~\ref{lem:classical}): a kernel that vanishes on $(-\infty,0]$ and is strictly decreasing on $(b,\infty)$ cannot hide atoms that run to $-\infty$ with growing gaps, because in each gap the density is a sum of decreasing pieces. The free half uses the subordination function of the free convolution and the description of its zero set by Huang and Wang \cite{HW}: at the midpoint of each gap the subordination map has a positive real derivative, which puts a whole interval into the zero set of the density, while the atoms on either side of the gap stay in its support.
+
+The theorem leaves open the cases $\alpha\in[1,2)$ and the stable laws whose support is all of $\R$, in particular the symmetric ones; for those the opposite-gap construction does not apply, since the kernel is positive everywhere.
+
+\section{The classical case}\label{sec:classical}
+
+\begin{lemma}\label{lem:classical}
+Let $g$ be a bounded continuous probability density on $\R$ with $g=0$ on $(-\infty,0]$, strictly decreasing on $(b,\infty)$ for some $b\ge0$. Let $0=a_0<a_1<a_2<\cdots$ with $a_n-a_{n-1}\to\infty$, let $p_n>0$ with $\sum_{n\ge0}p_n=1$, and put $\mu=\sum_{n\ge0}p_n\delta_{-a_n}$. Then $\mu*g$ is not unimodal.
+\end{lemma}
+
+\begin{proof}
+The measure $\mu*g$ has density $q(x)=\sum_{j\ge0}p_jg(x+a_j)$; the series converges uniformly because $g$ is bounded, so $q$ is continuous, and $\int q=1$ by Tonelli's theorem. In particular $\mu*g$ has no atom.
+
+Choose $N$ with $a_n-a_{n-1}>b$ for $n\ge N$, and for such $n$ put $I_n=(-a_n+b,\,-a_{n-1})$, a nonempty open interval. Let $x\in I_n$. For $j\le n-1$, $x+a_j\le x+a_{n-1}<0$, so $g(x+a_j)=0$ and the term vanishes on $I_n$. For $j\ge n$, $x+a_j\ge x+a_n>b$, so $x\mapsto g(x+a_j)$ is strictly decreasing on $I_n$. Hence $q$ is strictly decreasing on $I_n$ (the term $j=n$ has $p_n>0$).
+
+Suppose $\mu*g=c\,\delta_a+f(x)\,dx$ as in the definition. Since $\mu*g$ has no atom, $c=0$ and $f=q$ almost everywhere. Let $u<v<a$ and choose sequences $u_k\to u$, $v_k\to v$ in the set where $f=q$, with $u_k<v_k<a$. Then $q(u_k)=f(u_k)\le f(v_k)=q(v_k)$, and continuity gives $q(u)\le q(v)$. So $q$ is nondecreasing on $(-\infty,a)$. Since $-a_{n-1}\to-\infty$, some $I_n$ with $n\ge N$ lies in $(-\infty,a)$, where $q$ is strictly decreasing. This is a contradiction.
+\end{proof}
+
+\begin{lemma}\label{lem:kernel}
+Let $\alpha\in(0,1)$ and $t>0$. The law $S^{(\alpha)}_t$ has a bounded continuous density $g_t$ with $g_t=0$ on $(-\infty,0]$, and there is $b_t\ge0$ such that $g_t$ is strictly decreasing on $(b_t,\infty)$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:classical}, $S^{(\alpha)}_t$ is the image of $S^{(\alpha)}_1$ under $x\mapsto t^{1/\alpha}x$, so it suffices to take $t=1$. A random variable $X$ with law $S^{(\alpha)}_1$ is nonnegative, and its characteristic function is $\exp(-(-iu)^\alpha)$, of modulus $\exp(-\cos(\pi\alpha/2)|u|^\alpha)$, which is integrable since $\cos(\pi\alpha/2)>0$. Hence $X$ has a bounded continuous density $g_1$; it vanishes on $(-\infty,0)$, and by continuity at $0$ as well.
+
+For $x>0$ the density is given by the convergent series \cite[Lemma XVII.6.1]{Feller}, \cite{Pollard}
+\begin{equation}\label{eq:series}
+g_1(x)=\frac1{x}\,E(x^{-\alpha}),\qquad E(y)=\sum_{k\ge1}c_ky^k,\qquad c_k=\frac{(-1)^{k+1}}{\pi}\,\frac{\Gamma(k\alpha+1)}{k!}\,\sin(k\pi\alpha).
+\end{equation}
+Since $\Gamma(k\alpha+1)/k!\to0$ faster than any geometric sequence when $\alpha<1$, $E$ is an entire function. Differentiating,
+\[
+g_1'(x)=-x^{-2}\bigl(E(y)+\alpha yE'(y)\bigr),\qquad y=x^{-\alpha},
+\]
+and $E(y)+\alpha yE'(y)=(1+\alpha)c_1y+O(y^2)$ as $y\downarrow0$, with $c_1=\Gamma(1+\alpha)\sin(\pi\alpha)/\pi>0$. Hence $g_1'(x)<0$ for all large $x$, and $g_1$ is strictly decreasing on $(b_1,\infty)$ for some $b_1$; then $b_t=t^{1/\alpha}b_1$ works for $g_t(x)=t^{-1/\alpha}g_1(t^{-1/\alpha}x)$.
+\end{proof}
+
+For $\alpha=1/2$ everything is explicit: $g_t(u)=t\,e^{-t^2/(4u)}/(2\sqrt\pi\,u^{3/2})$ for $u>0$, and
+\[
+g_t'(u)=\frac{t\,e^{-t^2/(4u)}}{2\sqrt\pi\,u^{7/2}}\Bigl(\frac{t^2}{4}-\frac{3u}{2}\Bigr),
+\]
+so one can take $b_t=t^2/6$. The check script verifies the Laplace transform, this derivative, the scaling, and the series \eqref{eq:series} against the closed form at $\alpha=1/2$ and against Kanter's integral representation \cite{Kanter} at $\alpha=0.3$ and $0.7$ (checks K1--K3, S1--S3 in \cite{code}).
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}, classical part and moments]
+For every $\lambda>0$,
+\[
+\int e^{\lambda|x|}\,d\mu_\ast(x)=1-W+\sum_{n\ge1}2^{-n-2}e^{\lambda A_n-A_n^2}<\infty,
+\]
+since $\lambda A_n-A_n^2\le0$ once $A_n\ge\lambda$. Also $W\le\sum_{n\ge1}2^{-n-2}=1/4$, so $\mu_\ast$ is a probability measure with $1-W\ge3/4$. Its atoms sit at $-a_n$ with $a_0=0$ and $a_n=A_n$, and $A_n-A_{n-1}=A_{n-1}(A_{n-1}-1)\to\infty$. Lemmas~\ref{lem:classical} and \ref{lem:kernel} give that $\mu_\ast*S^{(\alpha)}_t$ is not unimodal, for every $\alpha\in(0,1)$ and $t>0$.
+\end{proof}
+
+\begin{remark}
+The weights in Lemma~\ref{lem:classical} are arbitrary, so no bound on the left tail of $\mu$ short of bounded support gives eventual unimodality for these kernels: if $\psi>0$ is nonincreasing on $[0,\infty)$, take $a_n=A_n$ for $n\ge1$, $p_n=2^{-n-1}\min(\psi(A_n),1)$ for $n\ge1$ and $p_0=1-\sum_{n\ge1}p_n$; then $\mu((-\infty,-x))\le\sum_{j\ge n}p_j\le\psi(A_n)\le\psi(x)$ for $x\in[A_{n-1},A_n)$ (with $A_0=0$), and $\mu*S^{(\alpha)}_t$ is not unimodal for any $\alpha\in(0,1)$ and $t>0$.
+\end{remark}
+
+\section{The free case}\label{sec:free}
+
+\subsection{Preliminaries}
+For a probability measure $\nu$ on $\R$ let $G_\nu(z)=\int(z-s)^{-1}\,d\nu(s)$ and $F_\nu=1/G_\nu$ on $\C^+$, and let $\varphi_\nu$ be its Voiculescu transform, so that $\varphi_{\nu_1\bp\nu_2}=\varphi_{\nu_1}+\varphi_{\nu_2}$ \cite{BV}. By the free L\'evy--Khintchine theorem \cite[Section 5]{BV}, an analytic function $\varphi:\C^+\to\C^-\cup\R$ with $\varphi(iy)/(iy)\to0$ as $y\to\infty$ is the Voiculescu transform of a freely infinitely divisible law. The function in \eqref{eq:free} qualifies: writing $z=re^{i\theta}$ with $0<\theta<\pi$, the argument of $-\varphi(z)$ is $\pi\alpha+(1-\alpha)\theta\in(0,\pi)$, and $|\varphi(iy)|/y=ty^{-\alpha}\to0$. Since $c\,\varphi_{T^{(\alpha)}_1}(z/c)=c^{\alpha}\varphi_{T^{(\alpha)}_1}(z)$, the law $T^{(\alpha)}_t$ is the dilation of $T^{(\alpha)}_1$ by $t^{1/\alpha}$, and $T^{(\alpha)}_s\bp T^{(\alpha)}_t=T^{(\alpha)}_{s+t}$; so $(T^{(\alpha)}_t)_{t\ge0}$ is a free strictly $\alpha$-stable semigroup. In the parametrization of \cite{HK} it is $\nu_{\alpha,1}$ dilated by $t^{1/\alpha}$; it is concentrated on $(0,\infty)$ \cite[Corollary 1]{HK} and absolutely continuous \cite{BP}.
+
+We use the results of Huang and Wang \cite[Section 3]{HW} for the free convolution $\mu\bp\nu$ of a probability measure $\mu$ with a nondegenerate freely infinitely divisible $\nu$. Put
+\begin{equation}\label{eq:H}
+H(z)=z+\varphi_\nu(F_\mu(z)),\qquad z\in\C^+ .
+\end{equation}
+It has the form $H(z)=a+z+\int(1+sz)/(z-s)\,d\sigma(s)$ with a finite measure $\sigma\ne0$, and the function $f(x)=\inf\{y>0:\int(1+s^2)/((x-s)^2+y^2)\,d\sigma(s)<1\}$ is continuous and nonnegative. Let $V=\{x\in\R:f(x)>0\}$. The facts we need are the following.
+\begin{enumerate}[label=(HW\arabic*)]
+\item\label{hw1} \cite[Proposition 3.1(5)]{HW} The map $h(x)=H(x+if(x))$ is a strictly increasing homeomorphism of $\R$ onto $\R$.
+\item\label{hw2} \cite[Proposition 3.2]{HW} For $x\in\R$: $x\notin V$ if and only if the angular derivative $H'(x)$ exists in $[0,+\infty)$.
+\item\label{hw3} \cite[Theorem 3.6, Remark 3.7]{HW} $\R\setminus V=\mathcal A\cup\mathcal B\cup\mathcal C$, where $\mathcal A$ is the set of $x$ with $F_\mu(x)=0$ and $\mu(\{x\})+\nu(\{s_\nu\})\ge1$, $s_\nu$ being the zero of $F_\nu$ when it exists; $\mathcal B$ is contained in the set of $x$ at which the vertical limit $G_\mu(x)=\lim_{y\downarrow0}G_\mu(x+iy)$ exists in $\R\setminus\{0\}$; and $\mathcal C$ is contained in the set of $x$ at which this limit is $0$.
+\item\label{hw4} \cite[Example 3.8, Theorem 3.9]{HW} $\mu\bp\nu$ has no singular continuous part, its atoms lie in $h(\mathcal A)$, and its absolutely continuous part has a density $p$ that is continuous on $\R\setminus h(\mathcal A)$, with
+\[
+p(h(x))=\frac{f(x)}{\pi}\int\frac{d\mu(s)}{(x-s)^2+f(x)^2}\quad(x\in V),\qquad p(h(x))=0\quad(x\in\R\setminus V).
+\]
+\end{enumerate}
+
+\subsection{Proof of Theorem~\ref{thm:main}, free part}
+Fix $\alpha\in(0,1)$ and $t>0$, and write $\mu=\mu_\ast$, $\nu=T^{(\alpha)}_t$, $G=G_\mu$, $F=F_\mu$. Recall $1-W\ge3/4$ and $W\le1/4$.
+
+\emph{Step 1: $\mathcal A=\emptyset$, and $\mu\bp\nu$ has a continuous density $p$.} Since $\nu$ has no atoms, a point of $\mathcal A$ would be an atom of $\mu$ of mass $1$, and $\mu$ has none. By \ref{hw4}, $\mu\bp\nu$ is absolutely continuous with a density $p$ continuous on $\R$.
+
+\emph{Step 2: the atoms $-A_k$ lie in $V$.} At $x=-A_k$ we have $|G(x+iy)|\ge|\Ima G(x+iy)|\ge w_k/y\to\infty$ as $y\downarrow0$, so the vertical limit of $G$ at $x$ is not a real number; hence $x\notin\mathcal B\cup\mathcal C$, and $x\notin\mathcal A$ by Step 1. By \ref{hw3}, $x\in V$, and by \ref{hw4}, $p(h(-A_k))>0$.
+
+\emph{Step 3: a zero interval in each late gap.} Choose $n\ge2$ with
+\begin{equation}\label{eq:nchoice}
+A_n^{\alpha}\ge18(1-\alpha)t,
+\end{equation}
+write $A=A_n$, and put $c=-A/2$. Since $A_{n-1}=\sqrt A\le A/4$, we have $-A<c<-A_{n-1}$. We estimate
+\[
+G(c)=\frac{1-W}{c}+\sum_{k\ge1}\frac{w_k}{c+A_k},\qquad I_2(c):=\int\frac{d\mu(s)}{(c-s)^2}=-G'(c).
+\]
+For $k\le n-1$, $c+A_k\le-A/2+A/4<0$, so these terms are negative, and $|c+A_k|\ge A/4$. For $k\ge n$, $c+A_k\ge A/2$. Therefore
+\[
+G(c)\le-\frac{2(1-W)}{A}+\frac{2W}{A}\le-\frac{3}{2A}+\frac{1}{2A}=-\frac1A
+\]
+and
+\[
+I_2(c)\le\frac{4(1-W)}{A^2}+\frac{16W}{A^2}+\frac{4W}{A^2}=\frac{4+16W}{A^2}<\frac9{A^2}.
+\]
+Write $a(x)=-G(x)$. The function $G$ is real analytic on $(-A,-A_{n-1})$, and $J_0=\{x\in(-A,-A_{n-1}):G(x)<0\}$ is an open set containing $c$. For $x\in J_0$, $F$ is analytic near $x$ with $F(x)=-1/a(x)<0$. The function $w\mapsto w^{1-\alpha}$ on $\C^+$ extends analytically across $(-\infty,0)$, with boundary value $|w|^{1-\alpha}e^{i\pi(1-\alpha)}$ there. Hence $H$ extends analytically to a neighbourhood of each $x\in J_0$, and on $J_0$
+\[
+H(x)=x-te^{i\pi\alpha}\,a(x)^{\alpha-1}e^{i\pi(1-\alpha)}=x+t\,a(x)^{\alpha-1}\in\R .
+\]
+Since $a'=-G'=I_2$,
+\begin{equation}\label{eq:Hprime}
+H'(x)=1-(1-\alpha)\,t\,I_2(x)\,a(x)^{\alpha-2},\qquad x\in J_0 .
+\end{equation}
+At $x=c$, $a(c)\ge1/A$ gives $a(c)^{\alpha-2}\le A^{2-\alpha}$, and with $I_2(c)<9/A^2$ and \eqref{eq:nchoice},
+\[
+H'(c)>1-9(1-\alpha)\,t\,A^{-\alpha}\ge\tfrac12 .
+\]
+By continuity there is an open interval $J$ with $c\in J\subset J_0$ on which $H'>0$. At each $x\in J$ the function $H$ is analytic, real on the real axis near $x$, with real derivative $H'(x)\in(0,\infty)$; so the angular derivative of $H$ at $x$ exists and lies in $[0,\infty)$, and by \ref{hw2}, $x\notin V$. By \ref{hw4}, $p=0$ on $h(J)$, which by \ref{hw1} is a nonempty open interval with
+\[
+h(-A_n)<\inf h(J)<\sup h(J)<h(-A_{n-1}).
+\]
+
+\emph{Step 4: no mode.} Suppose $\mu\bp\nu=c_0\,\delta_a+f_0(x)\,dx$ as in the definition of unimodality. As $\mu\bp\nu$ is absolutely continuous, $c_0=0$ and $f_0=p$ almost everywhere. Put $u=h(-A_n)$, $v=h(-A_{n-1})$ and $K=h(J)$. By Steps 2 and 3 and the continuity of $p$, there are $\delta>0$ and $\eta>0$ with $p>\eta$ on $(u-\delta,u+\delta)$ and on $(v-\delta,v+\delta)$, both intervals disjoint from $K$, with $u+\delta<\inf K$ and $v-\delta>\sup K$. If $a\ge\sup K$, pick $y\in(u-\delta,u+\delta)$ and $z\in K$ with $y<z<a$, $f_0(y)=p(y)>\eta$ and $f_0(z)=p(z)=0$ (possible since these conditions fail only on a null set); this contradicts $f_0(y)\le f_0(z)$. If $a<\sup K$, pick $z\in K$ with $z>a$ and $y\in(v-\delta,v+\delta)$, again with $f_0(z)=0$ and $f_0(y)>\eta$; then $a<z<y$ contradicts $f_0(z)\ge f_0(y)$. Hence $\mu_\ast\bp T^{(\alpha)}_t$ is not unimodal.
+
+The value $n$ in \eqref{eq:nchoice} depends on $t$, but $\mu_\ast$ does not, so the conclusion holds for every $t>0$. The check script evaluates $G$, $I_2$ and $H'$ at $c$ for $\alpha\in\{0.1,0.5,0.9\}$ and $t\in\{1,100\}$ and on a grid of the gap, and verifies the boundary value of $\varphi$ used above (checks F1--F4 in \cite{code}). \qed
+
+\begin{remark}
+In the free case the conclusion is stronger than non-unimodality: for every $t>0$ the support of $\mu_\ast\bp T^{(\alpha)}_t$ has infinitely many gaps, since Step 3 applies to every $n$ satisfying \eqref{eq:nchoice}.
+\end{remark}
+
+\section*{Acknowledgements and funding}
+The research presented in this paper was supported by the European Research
+Council (ERC) under the European Union's Horizon Europe research and
+innovation programme (grant agreement No.~101041711), by the Simons
+Foundation as part of the Collaboration on the Mathematical and Scientific
+Foundations of Deep Learning, by Heights Labs, by Convex Nexus Capital, by
+the Israel Science Foundation (grant number 2258/19), and by the Israel
+Science Foundation (ISF Grant 4101/25).
+
+\section*{Declaration of competing interest}
+The author holds equity in Heights Labs and in Convex Nexus Capital and
+has a management role at Convex Nexus Capital. These entities are included
+in the funding declaration above.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+The paper comes out of Math Brain, an ongoing project on the use of AI systems for research mathematics. On 16 September 2026 agents running in OpenAI's Codex obtained the classical counterexample for the positive $1/2$-stable law and the free counterexample for the positive free $1/2$-stable law; on 10 October 2026 a further Codex agent restated the classical argument and a Claude agent refereed it. On 17 October 2026 Claude Opus~5.5, working in Claude Code, checked both proofs line by line against the cited theorems, extended them to every $\alpha\in(0,1)$ with a single initial law, and wrote the computer checks and the paper. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Data availability}
+No data were used. The code is available at\\ \url{https://github.com/yspennstate/stable-unimodality-opposite-gaps}.
+
+\begin{thebibliography}{99}
+
+\bibitem{BP} H.~Bercovici and V.~Pata, Stable laws and domains of attraction in free probability theory, with an appendix by P.~Biane, \emph{Ann. of Math.} \textbf{149} (1999), 1023--1060.
+
+\bibitem{BV} H.~Bercovici and D.~Voiculescu, Free convolution of measures with unbounded support, \emph{Indiana Univ. Math. J.} \textbf{42} (1993), 733--773.
+
+\bibitem{Feller} W.~Feller, \emph{An Introduction to Probability Theory and Its Applications}, Vol.~II, 2nd ed., Wiley, New York, 1971.
+
+\bibitem{HK} T.~Hasebe and A.~Kuznetsov, On free stable distributions, \emph{Electron. Commun. Probab.} \textbf{19} (2014), no.~56, 1--12.
+
+\bibitem{HU} T.~Hasebe and Y.~Ueda, Large time unimodality for classical and free Brownian motions with initial distributions, \emph{ALEA Lat. Am. J. Probab. Math. Stat.} \textbf{15} (2018), 353--374.
+
+\bibitem{HW} H.-W.~Huang and J.-C.~Wang, Regularity results for free L\'evy processes, arXiv:2203.00421 (2022).
+
+\bibitem{Kanter} M.~Kanter, Stable densities under change of scale and total variation inequalities, \emph{Ann. Probab.} \textbf{3} (1975), 697--707.
+
+\bibitem{Pollard} H.~Pollard, The representation of $e^{-x^\lambda}$ as a Laplace integral, \emph{Bull. Amer. Math. Soc.} \textbf{52} (1946), 908--910.
+
+\bibitem{code} Y.~Shmalo, \texttt{checks.py} and its output, \url{https://github.com/yspennstate/stable-unimodality-opposite-gaps}.
+
+\end{thebibliography}
+\end{document}

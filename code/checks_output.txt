@@ -1,0 +1,37 @@
+[K1] PASS  Laplace transform of g_t = exp(-sqrt(lam)*t)
+[K2] PASS  g_t'(u) = t e^(-t^2/4u) (t^2/4 - 3u/2) / (2 sqrt(pi) u^(7/2)); factor = t**2/4 - 3*u/2
+[K3] PASS  scaling g_t(u) = t^(-2) g_1(u/t^2)
+[S1] PASS  alpha=1/2: series = (1/(2 sqrt pi)) x^(-3/2) e^(-1/(4x)) at 6 points, max error 1.48e-31
+[S2] PASS  alpha=0.5: series vs Kanter's integral at x in [1, 2, 5, 20]: max relative error 4.49e-31
+[S2] PASS  alpha=0.3: series vs Kanter's integral at x in [1, 2, 5, 20]: max relative error 2.25e-31
+[S2] PASS  alpha=0.7: series vs Kanter's integral at x in [1, 2, 5, 20]: max relative error 3.43e-31
+[S3] PASS  alpha=0.1: leading coefficient c_1 = Gamma(1+alpha) sin(pi alpha)/pi = 0.093577872 > 0
+[S3] PASS  alpha=0.3: leading coefficient c_1 = Gamma(1+alpha) sin(pi alpha)/pi = 0.23111496 > 0
+[S3] PASS  alpha=0.5: leading coefficient c_1 = Gamma(1+alpha) sin(pi alpha)/pi = 0.28209479 > 0
+[S3] PASS  alpha=0.7: leading coefficient c_1 = Gamma(1+alpha) sin(pi alpha)/pi = 0.23399093 > 0
+[S3] PASS  alpha=0.9: leading coefficient c_1 = Gamma(1+alpha) sin(pi alpha)/pi = 0.094602331 > 0
+[M1] PASS  W = sum w_n < sum 2^(-n-2) = 1/4 (partial sums 0.250000); so w_0 > 3/4
+[M2] PASS  A_(n-1) = sqrt(A_n) <= A_n/4 for n >= 2 (checked n = 2..7)
+[M3] PASS  sum_(n<=8) w_n e^(lambda A_n) at lambda=1: 7.68027e-7 (terms n>=9 are below e^(-A_9^2/2))
+[M3] PASS  sum_(n<=8) w_n e^(lambda A_n) at lambda=10: 3.31114e+9 (terms n>=9 are below e^(-A_9^2/2))
+[M3] PASS  sum_(n<=8) w_n e^(lambda A_n) at lambda=100: 3.07372e+582 (terms n>=9 are below e^(-A_9^2/2))
+[C1] PASS  t=1.0, n=2: q_t' < 0 at 19 points of I_n = (-A_n + t^2/6, -A_(n-1)) = (-15.8333, -4.0)
+[C1] PASS  t=5.0, n=3: q_t' < 0 at 19 points of I_n = (-A_n + t^2/6, -A_(n-1)) = (-251.833, -16.0)
+[C1] PASS  t=50.0, n=4: q_t' < 0 at 19 points of I_n = (-A_n + t^2/6, -A_(n-1)) = (-65119.3, -256.0)
+[F1] PASS  alpha=0.1, t=1.0, n=6: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.9885777 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F1] PASS  alpha=0.1, t=100.0, n=7: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.98647424 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F1] PASS  alpha=0.5, t=1.0, n=3: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.95580583 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F1] PASS  alpha=0.5, t=100.0, n=5: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.99892104 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F1] PASS  alpha=0.9, t=1.0, n=2: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.98461069 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F1] PASS  alpha=0.9, t=100.0, n=4: -G(c_n) A_n = 2.0 > 1, I_2(c_n) A_n^2 = 4.0 < 9, H_t'(c_n) = 0.99913683 > 1/2
+[F2] PASS     grid of 39 points in (-A_n, -A_(n-1)): 39 have G < 0 and H_t' > 0 (zero-density set of the free convolution)
+[F3] PASS  alpha=0.3: phi(-1/a + i0) = -e^(i pi alpha)(-1/a)^(1-alpha) = a^(alpha-1) (got (2.00566683468 - 5.19467710183e-41j))
+[F3] PASS  alpha=0.5: phi(-1/a + i0) = -e^(i pi alpha)(-1/a)^(1-alpha) = a^(alpha-1) (got (1.64398987305 - 3.04138126515e-41j))
+[F3] PASS  alpha=0.8: phi(-1/a + i0) = -e^(i pi alpha)(-1/a)^(1-alpha) = a^(alpha-1) (got (1.21999950703 - 9.027996352e-42j))
+[F4] PASS  arg(-phi(r e^(i theta))) = pi alpha + theta (1-alpha) lies in (0, pi)
+ALL PASS
